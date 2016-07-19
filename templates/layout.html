@@ -17,14 +17,36 @@
 	</div>
 <div class="medium-4 columns">
 <!-- SAy hi -->
+<h1> Hello{% if current_user.is_authenticated() %} {{ current_user.username }}{% endif %}!</h1>
 </div>
-<div class="medium-4 columns">
 <!-- Login in Log out-->
+<div class="medium-4 columns">{% if current_user.is.authenticated() %}
+	<a href="{{ url_for ('logout') }}" class="icon-power" title="Log out"></a>
+{% else %}
+<a href="{{ url_for ('login') }}" class= "icon-power" title="Log in"></a>
+	<a href="{{ url_for('register') }}" class="icon-power" title="Register"></a>
+{% endif %}
 </div>
 
 </div>
 
 </header>
+<!-- flash messages -->
+{% with messages = get_flashed_messages(with_categories=True) %}
+{% if messages %}
+{% for category, message in messages %}
+{% endfor %}
+{% endwidth %}
+
+<div class="row">
+	<div class="main">
+<nav>
+	<a href="{{ url_for ('index') }}"> All </a>
+</nav>
+{% block content %}{% endblock %}
+	</div>
+
+</div>
 
 	   </body>
-</html>
+</html
